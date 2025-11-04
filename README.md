@@ -37,9 +37,8 @@ Please cite or reference this repository if you use it in your work.
 The dataset is provided as a ZIP file:
 Unzip the file to access:
 - `/images/` — raw images  
-- `/labels/` — YOLO-format annotations for detection/segmentation  
-- `/lanes/` — lane segmentation masks (if applicable)  
-- `data.yaml` — YOLO configuration file  
+- `/labels/` — YOLO-format annotations for detection and segmentation tasks  
+It has total of 12 classes 10 detection class + 1 drivable area segmentation + 1 lane line segmentation
 
 ---
 
@@ -52,15 +51,32 @@ yolo task=detect mode=train model=yolov8m.pt data=data.yaml epochs=100 imgsz=640
 ### 📁 Dataset Structure
 After extracting the ZIP, the folder structure looks like this:
 
-Multi-task_Indian_road_dataset/
-│
-├── images/
-│ ├── train/
-│
-├── labels/
-│ ├── train/
-│
-├── lanes/
-│ ├── train/
-│
-└── README.txt
+# The id represent the correspondence relation
+├─dataset root
+│ ├─images
+│ │ ├─train
+│ ├─detection-object
+│ │ ├─labels
+│ │ │ ├─train
+│ ├─seg-drivable-10
+│ │ ├─labels
+│ │ │ ├─train
+│ ├─seg-lane-11
+│ │ ├─labels
+│ │ │ ├─train
+
+Classes:
+# Classes for all tasks
+names:
+  0: person
+  1: auto
+  2: car
+  3: bus
+  4: pothole
+  5: bike
+  6: cracks
+  7: manhole
+  8: speedbump
+  9: waterlogging
+  10: drivable  
+  11: lane  
